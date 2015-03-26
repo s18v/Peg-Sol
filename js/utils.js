@@ -7,7 +7,7 @@ var board = document.getElementById("board");
 var context = board.getContext("2d");
 
 function generateSquare(x, y, color) {
-   context.fillStyle = "rgb(255,255,255)"; //White - #FFFFFF
+   context.fillStyle = "rgb(0, 0, 0)"; //Black - #000000 & White - #FFFFFF
     context.fillRect(x * boxWidth, y * boxWidth, boxWidth, boxWidth); //(x-coordinate from upper-left, y-coordinate, width, height)
     context.fillStyle = squareColor;
     context.fillRect((x * boxWidth) + offset, (y * boxWidth) + offset, boxWidth - 2 * offset, boxWidth - 2 * offset);
@@ -16,7 +16,7 @@ function generateSquare(x, y, color) {
 function generateCircle(x, y, color) {
     context.fillStyle = color;
     context.beginPath();
-    context.arc(x * boxWidth + (boxWidth / 2), y * boxWidth + (boxWidth / 2), boxWidth * 0.4, 2 * Math.PI, true);
+    context.arc(x * boxWidth + (boxWidth / 2), y * boxWidth + (boxWidth / 2), boxWidth * 0.375, 0 * Math.PI, 2 * Math.PI, true);
     context.closePath();
     context.fill();
 }
