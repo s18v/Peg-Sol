@@ -22,28 +22,27 @@ function generateCircle(x, y, color) {
 }
 
 function start() {
-    //    generateSquare(2, 0, squareColor);
     
         board.width = 7 * boxWidth;
         board.height = 7 * boxWidth
         for (var i=0; i < 3; i++) {
 			for (var j=0; j < 2; j++) {
 				generateSquare(2+i, j, squareColor);
-//				generateCircle(2+i, j, circleColor);
+				generateCircle(2+i, j, circleColor);
             }
         }
-		for (var i=0; i < 7; i++) {
-			for (var j=0; j < 3; j++) {
-				generateSquare(i, 2+j, squareColor);
-				if (j != 1 || i != 3) {
-//					drawDot(i, 2+j, PEG_COLOUR);
-                }
-            }
+	for (var i=0; i < 7; i++) {
+		for (var j=0; j < 3; j++) {
+			generateSquare(i, 2+j, squareColor);
+			if (j != 1 || i != 3) {
+				generateCircle(i, 2+j, circleColor);
+               		}
+               	}
         }
         for (var i=0; i < 3; i++) {
 			for (var j=0; j < 2; j++) {
 				generateSquare(2+i, 5+j, squareColor);
-//				drawDot(2+i, 5+j, PEG_COLOUR);
+				generateCircle(2+i, 5+j, circleColor);
 			}
         }
 }
