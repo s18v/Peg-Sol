@@ -34,8 +34,8 @@ $("#board").click(function(event) {
 //    console.log("JQuery X: " + x + " and JQuery Y: " + y);
 //    console.log("......");
     // Getting the box number from start of the board
-    var xStart = Math.floor((event.pageX - $("#board").offset().left) / boxWidth); 
-    var yStart = Math.floor((event.pageY - $("#board").offset().top) / boxWidth);
+    var xStart = Math.floor(x / boxWidth); 
+    var yStart = Math.floor(y / boxWidth);
     
     console.log(xStart + " " + yStart);
     

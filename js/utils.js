@@ -6,6 +6,14 @@ var boxWidth = 40;
 var board = document.getElementById("board");
 var context = board.getContext("2d");
 
+// Util method to convert RGB value of a Color to Hexadecimal value
+function rgbToHex(r, g, b) {
+    if (r > 255 || g > 255 || b > 255) {
+        throw "Invalid Color!";
+    }
+    return ((r << 16 | (g << 8) | b).toString(16));
+}
+
 function generateSquare(x, y, color) {
     // Filling the background
     context.fillStyle = "rgb(0, 0, 0)"; //Black - #000000 & White - #FFFFFF
