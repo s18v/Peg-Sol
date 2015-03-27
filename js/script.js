@@ -47,6 +47,6 @@ $("#board").click(function(event) {
     console.log(hexPegBorder);
     console.log(pegColor);
     
-    var peg = (hexPeg == pegColor) ? true : false;
+    var isPegPresent = (hexPeg == pegColor) ? true : false;
     console.log(peg);
 });
