@@ -16,8 +16,8 @@ function findPosition(obj) {
 }
 
 $("#board").click(function(event) {
-    console.log("X: " + event.pageX + " and Y: " + event.pageY); 
-    console.log(this.offsetParent); //offsetParent returns a reference to the object which is the closest (nearest in the containment hierarchy) positioned containing element
+//    console.log("X: " + event.pageX + " and Y: " + event.pageY); 
+//    console.log(this.offsetParent); //offsetParent returns a reference to the object which is the closest (nearest in the containment hierarchy) positioned containing element
    
     /* var pos = findPosition(this);
     var context = this.getContext('2d');
@@ -25,11 +25,18 @@ $("#board").click(function(event) {
     var y = event.pageY - pos.y; //event.pageY gives the position relative to the document's top
     console.log("relative X: " + x + " and relative Y: " + y); */
     
-    console.log("checking jQuery's results...");
-    var xjquery = event.pageX - $(this).offset().left;
-    var yjquery = event.pageY - $(this).offset().top;
+//    console.log("checking jQuery's results...");
+    var ctx = this.getContext('2d');
+    var x = event.pageX - $(this).offset().left;
+    var y = event.pageY - $(this).offset().top;
+    var coordinates = "x = " + x + ", y = " + y;
+    console.log(coordinates);
+//    console.log("JQuery X: " + x + " and JQuery Y: " + y);
+//    console.log("......");
+    // Getting the box number from start of the board
+    var xStart = Math.floor((event.pageX - $("#board").offset().left) / boxWidth); 
+    var yStart = Math.floor((event.pageY - $("#board").offset().top) / boxWidth);
     
-    console.log("jquery X: " + xjquery + " and jquery Y: " + yjquery);
-    console.log("......");
-
+    console.log(xStart + " " + yStart);
+    
 });

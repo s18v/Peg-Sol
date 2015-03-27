@@ -1,14 +1,16 @@
 var squareColor = "blue";
 var pegColor = "orange";
 var offset = 2;
-var boxWidth = 30;
+var boxWidth = 40;
 
 var board = document.getElementById("board");
 var context = board.getContext("2d");
 
 function generateSquare(x, y, color) {
+    // Filling the background
     context.fillStyle = "rgb(0, 0, 0)"; //Black - #000000 & White - #FFFFFF
     context.fillRect(x * boxWidth, y * boxWidth, boxWidth, boxWidth); //(x-coordinate from upper-left, y-coordinate, width, height)
+    // Filling the square
     context.fillStyle = squareColor;
     context.fillRect((x * boxWidth) + offset, (y * boxWidth) + offset, boxWidth - 2 * offset, boxWidth - 2 * offset);
 }
