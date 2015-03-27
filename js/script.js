@@ -1,7 +1,6 @@
 /**
 * This method is to find the relative position of the element from its parent.
 * Using JQuery's offset() instead of this.
-*/
 function findPosition(obj) {
     var curLeft = 0;
     var curTop = 0;
@@ -13,7 +12,7 @@ function findPosition(obj) {
         return { x: curLeft, y: curTop};
     }
     return undefined;
-}
+} */
 
 $("#board").click(function(event) {
 //    console.log("X: " + event.pageX + " and Y: " + event.pageY); 
@@ -34,9 +33,20 @@ $("#board").click(function(event) {
 //    console.log("JQuery X: " + x + " and JQuery Y: " + y);
 //    console.log("......");
     // Getting the box number from start of the board
-    var xStart = Math.floor(x / boxWidth); 
-    var yStart = Math.floor(y / boxWidth);
-    
+    var xStart = Math.floor(x / boxWidth); // x co-ordinate of box wrt board
+    var yStart = Math.floor(y / boxWidth); // y co-ordinate of box wrt board
     console.log(xStart + " " + yStart);
     
+    var pegColorData = ctx.getImageData((xStart * boxWidth) + (boxWidth / 2), (yStart * boxWidth) + (boxWidth / 2), 1, 1).data; // Getting the color at center point of the box 
+    var pegBorderColorData = ctx.getImageData((xStart * boxWidth) + offset, (yStart * boxWidth) + offset, 1, 1).data; //Getting the color at the border of the box
+    
+    var hexPeg = "#" + ("000000" + rgbToHex(pegColorData[0], pegColorData[1], pegColorData[2])).slice(-6);
+    var hexPegBorder = "#" + ("000000" + rgbToHex(pegBorderColorData[0], pegBorderColorData[1], pegBorderColorData[2])).slice(-6);
+    
+    console.log(hexPeg);
+    console.log(hexPegBorder);
+    console.log(pegColor);
+    
+    var peg = (hexPeg == pegColor) ? true : false;
+    console.log(peg);
 });

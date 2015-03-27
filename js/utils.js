@@ -1,5 +1,5 @@
-var squareColor = "blue";
-var pegColor = "orange";
+var squareColor = "#0000ff";
+var pegColor = "#ffa500";
 var offset = 2;
 var boxWidth = 40;
 
@@ -8,10 +8,9 @@ var context = board.getContext("2d");
 
 // Util method to convert RGB value of a Color to Hexadecimal value
 function rgbToHex(r, g, b) {
-    if (r > 255 || g > 255 || b > 255) {
-        throw "Invalid Color!";
-    }
-    return ((r << 16 | (g << 8) | b).toString(16));
+	if (r > 255 || g > 255 || b > 255)
+		throw "Invalid Color!";
+	return ((r << 16) | (g << 8) | b).toString(16);
 }
 
 function generateSquare(x, y, color) {
