@@ -43,10 +43,38 @@ $("#board").click(function(event) {
     var hexPeg = "#" + ("000000" + rgbToHex(pegColorData[0], pegColorData[1], pegColorData[2])).slice(-6);
     var hexPegBorder = "#" + ("000000" + rgbToHex(pegBorderColorData[0], pegBorderColorData[1], pegBorderColorData[2])).slice(-6);
     
-    console.log(hexPeg);
-    console.log(hexPegBorder);
-    console.log(pegColor);
+//    console.log("hexPeg " + hexPeg);
+//    console.log("hexPegBorder " + hexPegBorder);
     
     var isPegPresent = (hexPeg == pegColor) ? true : false;
-    console.log(peg);
+//    console.log(isPegPresent);
+    
+    // If square is selected, unselect it
+    if (hexPegBorder == selectedSquareColor) {
+        selectedX = -1;
+        selectedY = -1;
+        // Generate a square to do that 
+        generateSquare(xStart, yStart, squareColor);
+        console.log("inside if");
+        if (isPegPresent) {
+            generateCircle(xStart, yStart, pegColor);       
+        }
+    } else if (hexPegBorder == squareColor){
+        // Make sure no other peg is selected and select it
+        if (selectedX == -1 && selectedY == -1) {
+            var srcPeg = hasPeg(xStart, yStart, ctx);
+            if (!srcPeg) {
+                 return;   
+            }
+            console.log("here");
+            selectedX = xStart;
+            selectedY = yStart;
+            // Since it is selected, add that color to the square
+            generateSquare(xStart, yStart, selectedSquareColor);
+            if (isPegPresent) {
+                generateCircle(xStart, yStart, pegColor);
+            }
+        }
+        
+    }
 });

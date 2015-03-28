@@ -25,6 +25,20 @@ function generateCircle(x, y, color) {
     context.fill();
 }
 
+function hasPeg(x, y, context) {
+    var pegColorData = context.getImageData((x * boxWidth) + (boxWidth / 2), (y * boxWidth) + (boxWidth / 2), 1, 1).data;
+    var hexPeg = "#" + ("000000" + rgbToHex(pegColorData[0], pegColorData[1], pegColorData[2])).slice(-6);
+    var isPegPresent = (hexPeg == pegColor) ? true : false;
+    return isPegPresent;
+}
+
+function isSelected(x, y, context) {
+    var pegBorderColorData = ctx.getImageData((x * boxWidth) + offset, (y * boxWidth) + offset, 1, 1).data;
+    var hexPegBorder = "#" + ("000000" + rgbToHex(pegBorderColorData[0], pegBorderColorData[1], pegBorderColorData[2])).slice(-6);
+    var isPegSelected = (hexPegBorder == selectedSquareColor) ? true : false;
+    return isPegSelected;
+}
+
 function start() {
     board.width = 7 * boxWidth;
     board.height = 7 * boxWidth;
