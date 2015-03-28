@@ -1,8 +1,3 @@
-var squareColor = "#0000ff";
-var pegColor = "#ffa500";
-var offset = 2;
-var boxWidth = 40;
-
 var board = document.getElementById("board");
 var context = board.getContext("2d");
 
