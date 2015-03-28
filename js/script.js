@@ -51,24 +51,25 @@ $("#board").click(function(event) {
     
     // If square is selected, unselect it
     if (hexPegBorder == selectedSquareColor) {
-        selectedX = -1;
-        selectedY = -1;
+        xSelected = -1;
+        ySelected = -1;
         // Generate a square to do that 
         generateSquare(xStart, yStart, squareColor);
         console.log("inside if");
         if (isPegPresent) {
+            console.log("ispegpresent? " + isPegPresent);
             generateCircle(xStart, yStart, pegColor);       
         }
     } else if (hexPegBorder == squareColor){
-        // Make sure no other peg is selected and select it
-        if (selectedX == -1 && selectedY == -1) {
+        // Make sure no other square is selected and select it
+        if (xSelected == -1 && ySelected == -1) {
             var srcPeg = hasPeg(xStart, yStart, ctx);
             if (!srcPeg) {
                  return;   
             }
             console.log("here");
-            selectedX = xStart;
-            selectedY = yStart;
+            xSelected = xStart;
+            ySelected = yStart;
             // Since it is selected, add that color to the square
             generateSquare(xStart, yStart, selectedSquareColor);
             if (isPegPresent) {
@@ -76,5 +77,58 @@ $("#board").click(function(event) {
             }
         }
         
-    }
+        // Other square is selected, now move it
+        else {
+            var xDiff = xStart - xSelected;
+            var yDiff = yStart - ySelected;
+            
+            // Check if we can go to that position or not
+            if (xDiff > 2 || xDiff < -2 || yDiff > 2 || yDiff < -2) {
+                return;
+            }
+            
+            if (xDiff != 0 && yDiff != 0) {
+                return;
+            }
+            
+            // Move
+            var destPeg = hasPeg(xStart, yStart, ctx);
+            if (!destPeg) {
+                // Jumped Peg
+                var xOff = 0;
+                var yOff = 0;
+                if (xStart - xSelected > 0) {
+                    xOff = 1;
+                }
+                else if (xStart - xSelected < 0) {
+                    xOff = -1;   
+                }
+                else {
+                    xOff = 0;
+                    if (yStart - ySelected > 0) {
+                        yOff = 1;
+                    }
+                    else if (yStart - ySelected < 0){
+                        yOff = -1;
+                    }
+                    else {
+                        return;    
+                    }
+                }
+                // Check if we have a peg to jump over
+                var midPeg = hasPeg(xSelected + xOff, ySelected + yOff, ctx);
+                if (!midPeg) {
+                    return;    
+                }
+                // Jumped Peg
+                generateSquare(xSelected + xOff, ySelected + yOff, squareColor);
+                // Peg Destination
+                generateCircle(xStart, yStart, pegColor);
+                // Peg Source
+                generateSquare(xSelected, ySelected, squareColor);
+                xSelected = -1;
+                ySelected = -1;
+            }
+        }
+    }   
 });
