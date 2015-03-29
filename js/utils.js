@@ -40,6 +40,7 @@ function isSelected(x, y, context) {
 }
 
 function start() {
+    // 33-hole Peg Solitaire Board
     board.width = 7 * boxWidth;
     board.height = 7 * boxWidth;
     for (var i=0; i < 3; i++) {
