@@ -30,8 +30,7 @@ $("#board").click(function(event) {
     var y = event.pageY - $(this).offset().top;
     var coordinates = "x = " + x + ", y = " + y;
     console.log(coordinates);
-//    console.log("JQuery X: " + x + " and JQuery Y: " + y);
-//    console.log("......");
+
     // Getting the box number from start of the board
     var xStart = Math.floor(x / boxWidth); // x co-ordinate of box wrt board
     var yStart = Math.floor(y / boxWidth); // y co-ordinate of box wrt board
@@ -43,8 +42,8 @@ $("#board").click(function(event) {
     var hexPeg = "#" + ("000000" + rgbToHex(pegColorData[0], pegColorData[1], pegColorData[2])).slice(-6);
     var hexPegBorder = "#" + ("000000" + rgbToHex(pegBorderColorData[0], pegBorderColorData[1], pegBorderColorData[2])).slice(-6);
     
-//    console.log("hexPeg " + hexPeg);
-//    console.log("hexPegBorder " + hexPegBorder);
+    console.log("hexPeg " + hexPeg);
+    console.log("hexPegBorder " + hexPegBorder);
     
     var isPegPresent = (hexPeg == pegColor) ? true : false;
 //    console.log(isPegPresent);
